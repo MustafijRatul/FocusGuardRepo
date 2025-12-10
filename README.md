@@ -4,7 +4,18 @@
 
 FocusGuard Pro combines a powerful distraction blocker, a Pomodoro-style timer, and deep analytics into a stunning, modern interface featuring the Windows Acrylic (Glass) aesthetic.
 
-![Version](https://img.shields.io/badge/version-11.6-blue) ![Python](https://img.shields.io/badge/python-3.10%2B-yellow) ![Platform](https://img.shields.io/badge/platform-Windows-0078D6)
+![Version](https://img.shields.io/badge/version-11.6-blue) ![Platform](https://img.shields.io/badge/platform-Windows-0078D6) ![License](https://img.shields.io/badge/license-MIT-green)
+
+---
+
+## 📥 Download & Installation
+
+**Simply download the installer:**
+
+1.  Go to the **[Releases Page](https://github.com/MustafijRatul/FocusGuardRepo/releases)**.
+2.  Download the latest file: **`FocusGuard_Pro_Setup_v11.6.exe`**.
+3.  Run the installer and follow the on-screen instructions.
+4.  FocusGuard Pro will launch automatically and minimize to your system tray.
 
 ---
 
@@ -45,22 +56,28 @@ FocusGuard Pro combines a powerful distraction blocker, a Pomodoro-style timer, 
 *   **Glass/Acrylic Effect:** Native Windows background blur integration.
 *   **Theme Engine:** Switch between **Ambient** and **Dark** modes.
 *   **Customization:** Choose from 6 neon accent colors and 3 button styles (Gradient, Solid, Glass).
-*   **Responsive:** Optimized for High-DPI displays.
 
 ### 🎵 **Ambient Soundscapes**
 *   Built-in audio engine playing Rain, Jungle, and Thunder sounds.
 *   Support for uploading your own custom background music.
 
-### 📅 **Scheduler**
-*   Automate your day by scheduling specific blocking profiles to activate at specific times.
+---
+
+## ⚙️ Configuration
+
+FocusGuard Pro saves your preferences locally.
+*   **System Tray:** The app minimizes to the system tray. Double-click the tray icon to restore the window, or right-click to Quit.
+*   **Auto-Start:** You can enable "Run on Startup" in the Settings tab.
 
 ---
 
-## 🛠️ Installation & Setup
+## 👨‍💻 For Developers (Run from Source)
+
+If you want to contribute or run the raw Python version, follow these steps:
 
 ### Prerequisites
-*   Windows 10 or Windows 11 (Required for Glass effects).
-*   Python 3.10 or higher.
+*   Windows 10 or 11.
+*   Python 3.10+.
 
 ### 1. Clone the Repository
 ```bash
@@ -69,52 +86,26 @@ cd FocusGuardRepo
 ```
 
 ### 2. Install Dependencies
-Create a virtual environment (recommended) and install the required libraries:
-
 ```bash
 pip install PySide6 qtawesome pygetwindow pygame matplotlib
 ```
 
-> **Note:** `winsound` is a standard Python library on Windows and does not need to be installed via pip.
-
-### 3. Run the Application
+### 3. Run the App
 ```bash
 python main.py
 ```
 
----
-
-## 📦 Building an Executable
-
-If you want to build a standalone `.exe` file to run without Python installed, use **PyInstaller**:
-
-1. Install PyInstaller:
-   ```bash
-   pip install pyinstaller
-   ```
-
-2. Run the build command (ensure you have `icon1.png` and sound files in the directory):
-   ```bash
-   pyinstaller --noconsole --onefile --icon=icon1.png --name="FocusGuardPro" --add-data="icon1.png;." --add-data="*.wav;." --add-data="*.mp3;." main.py
-   ```
-
----
-
-## ⚙️ Configuration
-
-FocusGuard Pro saves your preferences locally in `focus_config.json`. This file includes:
-*   Theme settings (Opacity, Colors).
-*   App blocklists and Profiles.
-*   Session history.
-*   Schedules.
-
-**System Tray:** The app minimizes to the system tray. Double-click the tray icon to restore the window, or right-click to Quit.
+### Building the EXE (Optional)
+To create your own standalone executable using PyInstaller:
+```bash
+pyinstaller --noconsole --onefile --icon=icon1.png --name="FocusGuardPro" --add-data="icon1.png;." --add-data="*.wav;." --add-data="*.mp3;." main.py
+```
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome! If you find a bug or want to suggest a feature:
+Contributions are welcome!
 1. Fork the repository.
 2. Create a new branch (`git checkout -b feature/NewFeature`).
 3. Commit your changes.
@@ -124,7 +115,7 @@ Contributions are welcome! If you find a bug or want to suggest a feature:
 
 ## 👨‍💻 Author
 
-**Mustafijur Rahman Ratul**
+**Md. Mustafijur Rahman Ratul**
 *   [GitHub](https://github.com/MustafijRatul)
 *   [Facebook](https://www.facebook.com/share/1BsBPTF5DK/)
 
