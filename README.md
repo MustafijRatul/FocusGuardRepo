@@ -10,8 +10,17 @@ FocusGuard Pro combines a powerful distraction blocker, a Pomodoro-style timer, 
 
 ## 🖼️ Screenshots
 
-*(Add your screenshots here! Example below)*
-> ![Dashboard Screenshot](https://via.placeholder.com/800x450?text=Dashboard+Screenshot)
+### **Dashboard**
+*Track your current session, manage focus/break timers, and control ambient sounds.*
+![Dashboard](screenshots/dashboard.png)
+
+### **App Manager**
+*Selectively block distracting applications with custom profiles.*
+![App Blocking](screenshots/blocking.png)
+
+### **Analytics**
+*Visualize your productivity streaks and history over the last 7 days.*
+![Analytics](screenshots/analytics.png)
 
 ---
 
@@ -36,7 +45,7 @@ FocusGuard Pro combines a powerful distraction blocker, a Pomodoro-style timer, 
 *   **Glass/Acrylic Effect:** Native Windows background blur integration.
 *   **Theme Engine:** Switch between **Ambient** and **Dark** modes.
 *   **Customization:** Choose from 6 neon accent colors and 3 button styles (Gradient, Solid, Glass).
-*   **Responsive:** optimized for High-DPI displays.
+*   **Responsive:** Optimized for High-DPI displays.
 
 ### 🎵 **Ambient Soundscapes**
 *   Built-in audio engine playing Rain, Jungle, and Thunder sounds.
@@ -63,10 +72,10 @@ cd FocusGuardRepo
 Create a virtual environment (recommended) and install the required libraries:
 
 ```bash
-pip install PySide6 qtawesome pygetwindow pygame matplotlib winsound
+pip install PySide6 qtawesome pygetwindow pygame matplotlib
 ```
 
-> **Note:** `winsound` is a standard Python library on Windows, but ensure you are running this on a Windows machine.
+> **Note:** `winsound` is a standard Python library on Windows and does not need to be installed via pip.
 
 ### 3. Run the Application
 ```bash
