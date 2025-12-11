@@ -4,7 +4,7 @@
 
 FocusGuard Pro combines a powerful distraction blocker, a Pomodoro-style timer, and deep analytics into a stunning, modern interface featuring the Windows Acrylic (Glass) aesthetic.
 
-![Version](https://img.shields.io/badge/version-11.6-blue) ![Platform](https://img.shields.io/badge/platform-Windows-0078D6) ![License](https://img.shields.io/badge/license-MIT-green)
+![Version](https://img.shields.io/badge/version-11.8-blue) ![Platform](https://img.shields.io/badge/platform-Windows-0078D6) ![License](https://img.shields.io/badge/license-MIT-green)
 
 ---
 
