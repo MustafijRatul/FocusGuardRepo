@@ -100,12 +100,16 @@ To create your own standalone executable using PyInstaller:
 ```bash
 pyinstaller --noconsole --onefile --icon=icon1.png --name="FocusGuardPro" --add-data="icon1.png;." --add-data="*.wav;." --add-data="*.mp3;." main.py
 ```
+
+---
 ## 📚 Documentation
 Want to master FocusGuard Pro? Download the official guide:
 
 [**📖 Download User Manual (PDF)**](docs/FocusGuard_Pro_User_Manual.pdf)
 
 *Includes installation guide, troubleshooting tips, and strict mode details.*
+--- 
+
 ---
 
 ## 🤝 Contributing
