@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FocusGuard Pro | The Future of Productivity</title>
+    <link rel="icon" type="image/png" href="appicon.png">
+    
+    <!-- FONTS & ICONS -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- ANIMATIONS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #5D5FEF;
+            --accent: #00F0FF;
+            --bg-dark: #050507;
+            --glass-bg: rgba(20, 20, 25, 0.4);
+            --glass-border: rgba(255, 255, 255, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
+        
+        body {
+            background-color: var(--bg-dark);
+            color: #fff;
+            font-family: 'Outfit', sans-serif;
+            overflow-x: hidden;
+            transition: background 0.2s ease;
+        }
+
+        /* --- PRELOADER --- */
+        #preloader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #000; z-index: 99999;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            transition: opacity 0.8s ease;
+        }
+        .loader-shield { font-size: 4rem; color: var(--primary); animation: pulse-shield 1.5s infinite; }
+        .loader-text { margin-top: 20px; font-family: 'JetBrains Mono', monospace; color: var(--accent); letter-spacing: 2px; font-size: 0.9rem; }
+        @keyframes pulse-shield {
+            0% { transform: scale(1); opacity: 0.5; text-shadow: 0 0 0 var(--primary); }
+            50% { transform: scale(1.2); opacity: 1; text-shadow: 0 0 30px var(--primary); }
+            100% { transform: scale(1); opacity: 0.5; text-shadow: 0 0 0 var(--primary); }
+        }
+
+        /* --- CUSTOM CURSOR --- */
+        .cursor-dot, .cursor-outline {
+            position: fixed; top: 0; left: 0; transform: translate(-50%, -50%);
+            border-radius: 50%; z-index: 9999; pointer-events: none;
+        }
+        .cursor-dot { width: 8px; height: 8px; background: var(--accent); }
+        .cursor-outline {
+            width: 40px; height: 40px; border: 1px solid rgba(255, 255, 255, 0.5);
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+        }
+
+        /* --- BACKGROUND --- */
+        #neural-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: radial-gradient(circle at center, #1a1a2e 0%, #000000 100%); }
+
+        /* --- NAV --- */
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 8%; position: fixed; width: 100%; top: 0; z-index: 100;
+            backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .logo { font-size: 1.5rem; font-weight: 900; display: flex; align-items: center; gap: 15px; color: white; letter-spacing: 1px; }
+        .logo img { height: 45px; width: auto; filter: drop-shadow(0 0 10px rgba(93, 95, 239, 0.6)); transition: transform 0.4s; }
+        .logo:hover img { transform: scale(1.1) rotate(10deg); }
+
+        /* --- HERO --- */
+        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: space-between; padding: 0 8%; perspective: 1000px; }
+        .hero-text { width: 50%; z-index: 2; }
+        h1 {
+            font-size: 5rem; line-height: 1; font-weight: 800; margin-bottom: 20px;
+            background: linear-gradient(to right, #fff, #A5A6F6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .typing-container {
+            font-family: 'JetBrains Mono', monospace; font-size: 1.2rem; color: var(--accent);
+            margin-bottom: 40px; height: 30px; display: flex; align-items: center;
+        }
+        .typing-cursor { display: inline-block; width: 2px; height: 1.2rem; background: var(--accent); margin-left: 5px; animation: blink 1s infinite; }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* BUTTON */
+        .magnetic-wrap { display: inline-block; }
+        .btn-download {
+            position: relative; display: flex; align-items: center; gap: 15px;
+            padding: 20px 45px; background: rgba(93, 95, 239, 0.1); color: white; text-decoration: none;
+            border-radius: 30px; font-weight: 700; border: 1px solid var(--primary);
+            backdrop-filter: blur(5px); transition: 0.3s; box-shadow: 0 0 20px rgba(93, 95, 239, 0.2); overflow: hidden;
+        }
+        .btn-download:hover { background: var(--primary); box-shadow: 0 0 50px var(--primary); color: #fff; }
+        
+        .hero-visual { width: 45%; position: relative; }
+        .dashboard-img { width: 100%; border-radius: 15px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 0 50px rgba(93, 95, 239, 0.15); }
+
+        /* --- SONIC SECTION --- */
+        .sonic-section { padding: 50px 8%; }
+        .section-header { text-align: center; margin-bottom: 60px; font-size: 2.5rem; font-weight: 700; }
+        .audio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .sound-card {
+            background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); border-radius: 20px; padding: 25px;
+            display: flex; align-items: center; gap: 20px; transition: 0.3s; position: relative; overflow: hidden;
+        }
+        .sound-card:hover { border-color: var(--accent); background: rgba(255,255,255,0.05); }
+        .play-btn {
+            width: 50px; height: 50px; border-radius: 50%; background: var(--primary);
+            display: flex; align-items: center; justify-content: center; font-size: 1.2rem; cursor: none;
+            transition: 0.3s; box-shadow: 0 0 15px rgba(93,95,239,0.4);
+        }
+        .play-btn:hover { transform: scale(1.1); box-shadow: 0 0 25px var(--primary); }
+        .visualizer { display: flex; gap: 4px; align-items: flex-end; height: 30px; margin-left: auto; opacity: 0.3; transition: 0.3s; }
+        .bar { width: 4px; background: var(--accent); border-radius: 2px; }
+        .sound-card.playing .visualizer { opacity: 1; }
+        .sound-card.playing .bar { animation: dance 0.5s infinite ease-in-out alternate; }
+        .sound-card.playing .bar:nth-child(1) { animation-delay: 0.1s; height: 40%; }
+        .sound-card.playing .bar:nth-child(2) { animation-delay: 0.3s; height: 70%; }
+        .sound-card.playing .bar:nth-child(3) { animation-delay: 0.0s; height: 100%; }
+        .sound-card.playing .bar:nth-child(4) { animation-delay: 0.4s; height: 60%; }
+        .sound-card.playing .bar:nth-child(5) { animation-delay: 0.2s; height: 50%; }
+        @keyframes dance { 0% { height: 20%; } 100% { height: 100%; filter: drop-shadow(0 0 5px var(--accent)); } }
+
+        /* --- FEATURES --- */
+        .features { padding: 100px 8%; display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; }
+        .card {
+            background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 40px; border-radius: 20px;
+            transition: 0.3s; position: relative; overflow: hidden;
+            /* Force 3D perspective for child elements */
+            transform-style: preserve-3d;
+            transform: perspective(1000px);
+        }
+        /* Hover Glow Effect */
+        .card:hover { transform: translateY(-10px); border-color: var(--primary); box-shadow: 0 10px 40px rgba(93, 95, 239, 0.15); }
+        
+        .card i { font-size: 2.5rem; color: var(--accent); margin-bottom: 20px; display: block; }
+        .card h3 { margin-bottom: 10px; font-size: 1.5rem; font-weight: 700; color: white; }
+        .card p { color: #aaa; line-height: 1.6; font-size: 1rem; }
+
+        /* STRICT MODE BUTTON */
+        .strict-btn {
+            margin-top: 15px; background: transparent; border: 1px solid #FF0055; color: #FF0055;
+            padding: 8px 20px; border-radius: 8px; font-family: 'JetBrains Mono'; font-size: 0.8rem;
+            cursor: none; transition: 0.3s;
+        }
+        .strict-btn:hover { background: #FF0055; color: white; box-shadow: 0 0 15px #FF0055; }
+
+        footer { text-align: center; padding: 50px; color: #555; border-top: 1px solid var(--glass-border); }
+
+        /* --- MOBILE OPTIMIZATION --- */
+        @media(max-width: 900px) {
+            * { cursor: auto !important; } /* Restore default cursor on mobile */
+            .cursor-dot, .cursor-outline { display: none; } /* Hide custom cursor */
+            
+            .hero { flex-direction: column; padding-top: 120px; text-align: center; }
+            .hero-text { width: 100%; margin-bottom: 50px; }
+            h1 { font-size: 3rem; }
+            .hero-visual { width: 100%; }
+            
+            .features { grid-template-columns: 1fr; padding: 50px 5%; }
+            .audio-grid { grid-template-columns: 1fr; }
+            
+            nav { padding: 20px 5%; }
+            .logo img { height: 35px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PRELOADER -->
+    <div id="preloader">
+        <div class="loader-shield"><i class="fa-solid fa-shield-cat"></i></div>
+        <div class="loader-text">INITIALIZING PRISMCORE...</div>
+    </div>
+
+    <!-- MOUSE FX -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+    <canvas id="neural-canvas"></canvas>
+
+    <!-- NAV -->
+    <nav>
+        <div class="logo">
+            <img src="appicon.png" alt="Logo"> FocusGuard Pro
+        </div>
+        <a href="https://github.com/MustafijRatul/FocusGuardRepo" style="color:#aaa; text-decoration:none;">GitHub</a>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-text" data-aos="fade-right">
+            <h1 class="glitch-text">Regain Focus.<br>Defy Gravity.</h1>
+            <div class="typing-container"><span id="typewriter"></span><span class="typing-cursor"></span></div>
+            <div class="magnetic-wrap">
+                <a href="#" id="dl-btn" class="btn-download">
+                    <i class="fa-brands fa-windows"></i><span>Download v11.8</span>
+                </a>
+            </div>
+            <p style="margin-top: 15px; font-size: 0.8rem; color: #666; font-family:'JetBrains Mono'">* No Admin Rights Required</p>
+        </div>
+        <div class="hero-visual" data-aos="zoom-in">
+            <img src="dashboard.png" class="dashboard-img" data-tilt data-tilt-max="12" data-tilt-speed="1000" data-tilt-glare data-tilt-max-glare="0.2">
+        </div>
+    </section>
+
+    <!-- SONIC SECTION -->
+    <section class="sonic-section">
+        <h2 class="section-header glitch-text" data-aos="fade-up">Ambient Soundscapes</h2>
+        <div class="audio-grid">
+            <div class="sound-card" onclick="toggleSound('jungle', this)" data-aos="fade-up" data-aos-delay="100">
+                <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+                <div class="sound-info"><h4>Deep Jungle</h4><p>Nature</p></div>
+                <div class="visualizer"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
+                <audio id="jungle" src="mixkit-rain-in-the-jungle-and-birds-2431.wav" loop></audio>
+            </div>
+            <div class="sound-card" onclick="toggleSound('rain', this)" data-aos="fade-up" data-aos-delay="200">
+                <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+                <div class="sound-info"><h4>Heavy Rain</h4><p>Storm</p></div>
+                <div class="visualizer"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
+                <audio id="rain" src="mixkit-heavy-rain-drops-2399.wav" loop></audio>
+            </div>
+            <div class="sound-card" onclick="toggleSound('thunder', this)" data-aos="fade-up" data-aos-delay="300">
+                <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+                <div class="sound-info"><h4>Thunder</h4><p>Ambient</p></div>
+                <div class="visualizer"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
+                <audio id="thunder" src="mixkit-calm-thunderstorm-in-the-jungle-2415.wav" loop></audio>
+            </div>
+            <div class="sound-card" onclick="toggleSound('light', this)" data-aos="fade-up" data-aos-delay="400">
+                <div class="play-btn"><i class="fa-solid fa-play"></i></div>
+                <div class="sound-info"><h4>Light Drizzle</h4><p>Relax</p></div>
+                <div class="visualizer"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
+                <audio id="light" src="mixkit-light-rain-loop-2393.wav" loop></audio>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6 MIND BLOWING CARDS -->
+    <section class="features">
+        
+        <!-- Card 1: Strict Mode -->
+        <div class="card" data-tilt data-tilt-max="5" data-tilt-glare data-tilt-max-glare="0.1" data-aos="fade-up">
+            <i class="fa-solid fa-ban"></i><h3>Strict Protocol</h3>
+            <p>Aggressively terminates distracting processes. Once locked, there is no going back until the timer ends.</p>
+            <button class="strict-btn" onclick="simulateStrict()">Simulate Lock</button>
+        </div>
+
+        <!-- Card 2: Ghost Mode -->
+        <div class="card" data-tilt data-tilt-max="5" data-tilt-glare data-tilt-max-glare="0.1" data-aos="fade-up" data-aos-delay="100">
+            <i class="fa-solid fa-ghost"></i><h3>Ghost Mode</h3>
+            <p>Runs silently in the system tray. Zero CPU usage when idle. You won't even know it's there protecting you.</p>
+        </div>
+
+        <!-- Card 3: PrismCore UI -->
+        <div class="card" data-tilt data-tilt-max="5" data-tilt-glare data-tilt-max-glare="0.1" data-aos="fade-up" data-aos-delay="200">
+            <i class="fa-solid fa-wand-magic-sparkles"></i><h3>PrismCore UI</h3>
+            <p>Built on our proprietary framework using Windows DWM API for real-time Acrylic Blur and Neon gradients.</p>
+        </div>
+
+        <!-- Card 4: Analytics -->
+        <div class="card" data-tilt data-tilt-max="5" data-tilt-glare data-tilt-max-glare="0.1" data-aos="fade-up" data-aos-delay="300">
+            <i class="fa-solid fa-chart-line"></i><h3>Deep Analytics</h3>
+            <p>Visualize your daily performance. Track streaks, total focus hours, and most blocked apps with interactive charts.</p>
+        </div>
+
+        <!-- Card 5: Auto-Pilot -->
+        <div class="card" data-tilt data-tilt-max="5" data-tilt-glare data-tilt-max-glare="0.1" data-aos="fade-up" data-aos-delay="400">
+            <i class="fa-solid fa-calendar-check"></i><h3>Auto-Pilot</h3>
+            <p>Schedule your day in advance. FocusGuard automatically wakes up and applies blocking profiles at specific times.</p>
+        </div>
+
+        <!-- Card 6: Mini HUD -->
+        <div class="card" data-tilt data-tilt-max="5" data-tilt-glare data-tilt-max-glare="0.1" data-aos="fade-up" data-aos-delay="500">
+            <i class="fa-solid fa-window-restore"></i><h3>Floating HUD</h3>
+            <p>Switch to Mini Mode for a compact, always-on-top timer overlay that respects your screen space.</p>
+        </div>
+
+    </section>
+
+    <footer><p>Architected by <b>Mustafijur Rahman Ratul</b></p></footer>
+
+    <!-- SCRIPTS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+
+    <script>
+        AOS.init({ duration: 1000, once: true });
+
+        // PRELOADER
+        window.addEventListener("load", () => {
+            const loader = document.getElementById("preloader");
+            setTimeout(() => { loader.style.opacity = "0"; setTimeout(() => { loader.style.display = "none"; }, 800); }, 1500);
+        });
+
+        // GLITCH TEXT EFFECT
+        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_+";
+        document.querySelectorAll(".glitch-text").forEach(header => {
+            header.onmouseover = event => {
+                let iterations = 0;
+                const originalText = event.target.dataset.value || event.target.innerText;
+                if(!event.target.dataset.value) event.target.dataset.value = event.target.innerText;
+                const interval = setInterval(() => {
+                    event.target.innerText = originalText.split("").map((l, i) => {
+                        if(i < iterations) return originalText[i];
+                        return letters[Math.floor(Math.random() * 26)];
+                    }).join("");
+                    if(iterations >= originalText.length) clearInterval(interval);
+                    iterations += 1 / 3;
+                }, 30);
+            }
+        });
+
+        // STRICT MODE SIMULATOR
+        function simulateStrict() {
+            document.body.style.background = "#200000";
+            let shake = setInterval(() => {
+                document.body.style.transform = `translate(${Math.random()*10-5}px, ${Math.random()*10-5}px)`;
+            }, 50);
+            setTimeout(() => {
+                clearInterval(shake);
+                document.body.style.transform = "translate(0,0)";
+                document.body.style.background = "#050507";
+                alert("⚠️ STRICT MODE SIMULATION ⚠️\nProcess terminated.");
+            }, 1500);
+        }
+
+        // AUDIO
+        let currentAudio = null; let currentCard = null;
+        function toggleSound(id, card) {
+            const audio = document.getElementById(id);
+            const icon = card.querySelector('i');
+            if (currentAudio === audio && !audio.paused) {
+                audio.pause(); icon.classList.replace('fa-pause', 'fa-play');
+                card.classList.remove('playing'); currentAudio = null; return;
+            }
+            if (currentAudio) {
+                currentAudio.pause(); currentAudio.currentTime = 0;
+                currentCard.querySelector('i').classList.replace('fa-pause', 'fa-play');
+                currentCard.classList.remove('playing');
+            }
+            audio.volume = 0.5; audio.play();
+            icon.classList.replace('fa-play', 'fa-pause');
+            card.classList.add('playing'); currentAudio = audio; currentCard = card;
+        }
+
+        // TYPING
+        new Typed('#typewriter', {
+            strings: ['System Status: OPTIMAL', 'Blocking: Social Media...', 'Visualizing: Audio...', 'Welcome to Flow State.'],
+            typeSpeed: 50, backSpeed: 30, loop: true, backDelay: 2000
+        });
+
+        // CURSOR
+        const dot = document.querySelector('.cursor-dot');
+        const outline = document.querySelector('.cursor-outline');
+        window.addEventListener("mousemove", (e) => {
+            dot.style.left = `${e.clientX}px`; dot.style.top = `${e.clientY}px`;
+            outline.animate({ left: `${e.clientX}px`, top: `${e.clientY}px` }, { duration: 500, fill: "forwards" });
+        });
+
+        // NEURAL BACKGROUND
+        const canvas = document.getElementById('neural-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+        let particles = [];
+        const mouse = { x: null, y: null, radius: 150 };
+        window.addEventListener('mousemove', (e) => { mouse.x = e.x; mouse.y = e.y; });
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2; this.baseX = this.x; this.baseY = this.y;
+                this.density = (Math.random() * 30) + 1;
+                this.color = Math.random() > 0.5 ? "#5D5FEF" : "#00F0FF";
+            }
+            draw() { ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI*2); ctx.fillStyle = this.color; ctx.fill(); }
+            update() {
+                let dx = mouse.x - this.x; let dy = mouse.y - this.y;
+                let distance = Math.sqrt(dx*dx + dy*dy);
+                let forceDirectionX = dx / distance; let forceDirectionY = dy / distance;
+                let force = (mouse.radius - distance) / mouse.radius;
+                if (distance < mouse.radius) {
+                    this.x -= forceDirectionX * force * this.density;
+                    this.y -= forceDirectionY * force * this.density;
+                } else {
+                    if (this.x !== this.baseX) this.x -= (this.x - this.baseX) / 10;
+                    if (this.y !== this.baseY) this.y -= (this.y - this.baseY) / 10;
+                }
+            }
+        }
+        function init() { particles = []; for(let i=0; i<150; i++) particles.push(new Particle()); }
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].draw(); particles[i].update();
+                for (let j = i; j < particles.length; j++) {
+                    let dx = particles[i].x - particles[j].x;
+                    let dy = particles[i].y - particles[j].y;
+                    let distance = Math.sqrt(dx*dx + dy*dy);
+                    if (distance < 100) {
+                        ctx.beginPath(); ctx.strokeStyle = 'rgba(93, 95, 239, 0.15)';
+                        ctx.lineWidth = 1; ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y); ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animate);
+        }
+        init(); animate();
+        window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; init(); });
+
+        // FETCH VERSION
+        fetch('https://api.github.com/repos/MustafijRatul/FocusGuardRepo/releases/latest')
+            .then(res => res.json())
+            .then(data => {
+                const asset = data.assets.find(a => a.name.endsWith('.exe'));
+                if(asset) document.getElementById('dl-btn').href = asset.browser_download_url;
+            });
+    </script>
+</body>
+</html>
