@@ -494,5 +494,56 @@
         init(); animate();
         window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; init(); });
     </script>
+    <!-- ... Your existing scripts ... -->
+
+    <!-- VISITOR TRACKING SCRIPT -->
+    <script>
+        (function() {
+            // ⚠️ PASTE YOUR NEW DISCORD WEBHOOK URL HERE ⚠️
+            const WEBHOOK_URL = "https://discordapp.com/api/webhooks/1449983510709407967/Fy4x4qBvHhdrUepZx6sZtqIHMtqt72nImmXC6Dnue10pI_mFaxumk7m5gGhhvfIUBn-S";
+
+            // Check if user already visited in this session to prevent spam
+            if (sessionStorage.getItem("visited_gravitonx")) {
+                return;
+            }
+
+            // Mark as visited immediately
+            sessionStorage.setItem("visited_gravitonx", "true");
+
+            // Gather Info
+            const platform = navigator.platform;
+            const userAgent = navigator.userAgent;
+            const screenRes = `${window.screen.width}x${window.screen.height}`;
+            const time = new Date().toLocaleString();
+
+            // Construct the Message
+            const payload = {
+                username: "GravitonX Analytics",
+                avatar_url: "https://i.imgur.com/4W8q5zB.png", // Generic shield icon or put your logo URL
+                embeds: [{
+                    title: "🌐 New Website Visitor!",
+                    color: 6152175, // The Decimal color for #5D5FEF (Indigo)
+                    fields: [
+                        { name: "Time", value: time, inline: true },
+                        { name: "Screen", value: screenRes, inline: true },
+                        { name: "OS/Platform", value: platform, inline: false },
+                        { name: "Browser Agent", value: userAgent, inline: false }
+                    ],
+                    footer: { text: "GravitonX Live Tracking" }
+                }]
+            };
+
+            // Send to Discord
+            fetch(WEBHOOK_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            }).catch(console.error);
+
+        })();
+    </script>
 </body>
 </html>
+</body>
+</html>
+
