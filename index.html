@@ -1,549 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="google-site-verification" content="xhTiPOwRBM4kzbiWawDJ7_78M3YTRZyzLzld96Ukcs4" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GravitonX | Engineering the Future</title>
-    
-    <meta name="description" content="GravitonX Software Labs - Building high-performance productivity tools like FocusGuard Pro. Python, PySide6, and modern glassmorphism UI.">
-    <meta name="keywords" content="FocusGuard, FocusGuard Pro, GravitonX, Windows Productivity, App Blocker, Pomodoro Timer, Python, PySide6">
-    <meta name="author" content="Md. Mustafijur Rahman Ratul">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://mustafijratul.github.io/FocusGuardRepo/">
-    <meta property="og:title" content="GravitonX - FocusGuard Pro">
-    <meta property="og:description" content="Regain focus with the ultimate distraction shield for Windows.">
-    <meta property="og:image" content="https://mustafijratul.github.io/FocusGuardRepo/dashboard.png">
-    
-    <link rel="icon" type="image/png" href="gravitonx.png">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <title>Redirecting to GravitonX Labs...</title>
+
+    <!-- 1. SEO CANONICAL TAG (Tells Google: "The new link is the real one, rank that instead") -->
+    <link rel="canonical" href="https://gravitonx-labs.github.io/" />
+
+    <!-- 2. META REFRESH (Standard HTML Redirect) -->
+    <meta http-equiv="refresh" content="0; url=https://gravitonx-labs.github.io/" />
+
+    <!-- 3. ROBOTS TAG (Tells bots not to cache this page content, but follow the link) -->
+    <meta name="robots" content="noindex, follow">
 
     <style>
-        :root {
-            --primary: #5D5FEF;
-            --secondary: #A5A6F6;
-            --accent: #00F0FF;
-            --bg-dark: #050507;
-            --glass-bg: rgba(20, 20, 25, 0.6);
-            --glass-border: rgba(255, 255, 255, 0.08);
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
-        
         body {
-            background-color: var(--bg-dark);
-            color: #fff;
-            font-family: 'Outfit', sans-serif;
-            overflow-x: hidden;
+            background-color: #050507; /* Your Dark Theme Background */
+            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
         }
 
-        /* --- CURSOR --- */
-        .cursor-dot, .cursor-outline {
-            position: fixed; top: 0; left: 0; transform: translate(-50%, -50%);
-            border-radius: 50%; z-index: 9999; pointer-events: none;
-        }
-        .cursor-dot { width: 8px; height: 8px; background: var(--accent); }
-        .cursor-outline {
-            width: 40px; height: 40px; border: 1px solid rgba(255, 255, 255, 0.5);
-            transition: width 0.2s, height 0.2s, background-color 0.2s;
+        h2 { margin-bottom: 10px; font-weight: 400; }
+
+        a {
+            color: #5D5FEF; /* Your Primary Indigo */
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
         }
 
-        /* --- BACKGROUND --- */
-        #neural-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: radial-gradient(circle at center, #12121a 0%, #000000 100%); }
+        a:hover { text-decoration: underline; color: #A5A6F6; }
 
-        /* --- NAV --- */
-        nav {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 15px 5%; position: fixed; width: 100%; top: 0; z-index: 100;
-            backdrop-filter: blur(15px); border-bottom: 1px solid rgba(255,255,255,0.05);
-            background: rgba(5, 5, 7, 0.7);
-        }
-        .logo { font-size: 1.4rem; font-weight: 900; display: flex; align-items: center; gap: 15px; letter-spacing: 1px; }
-        .logo img { 
-            height: 40px; width: 40px; object-fit: contain; border-radius: 10px;
-            filter: drop-shadow(0 0 10px rgba(93, 95, 239, 0.6)); transition: transform 0.4s; 
-        }
-        .logo:hover img { transform: scale(1.1); }
-
-        /* --- HERO --- */
-        .hub-hero {
-            min-height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
-            text-align: center; padding: 0 5%; perspective: 1000px; margin-top: 60px;
-        }
-        h1 {
-            font-size: 4rem; line-height: 1.1; font-weight: 900; margin-bottom: 20px;
-            background: linear-gradient(135deg, #fff 30%, #5D5FEF 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
-        .subtitle {
-            font-size: 1.2rem; color: #aaa; margin-bottom: 40px; max-width: 600px;
-            font-family: 'JetBrains Mono', monospace;
+        /* Loading Spinner */
+        .spinner {
+            border: 3px solid rgba(93, 95, 239, 0.1);
+            border-top: 3px solid #5D5FEF;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 0.8s linear infinite;
+            margin-bottom: 20px;
         }
 
-        /* --- TYPING CONTAINER --- */
-        .typing-container {
-            font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; color: var(--accent);
-            margin-bottom: 30px; height: 30px; display: flex; align-items: center; justify-content: center;
-        }
-        .typing-cursor { display: inline-block; width: 2px; height: 1.2rem; background: var(--accent); margin-left: 5px; animation: blink 1s infinite; }
-        @keyframes blink { 50% { opacity: 0; } }
-
-        /* --- PRODUCTS --- */
-        .products-section { padding: 50px 5% 100px 5%; }
-        .section-title { font-size: 2.5rem; margin-bottom: 40px; border-left: 5px solid var(--primary); padding-left: 20px; }
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-
-        .product-card {
-            background: var(--glass-bg); border: 1px solid var(--glass-border);
-            padding: 30px; border-radius: 24px; position: relative; overflow: hidden;
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            display: flex; flex-direction: column; height: 100%;
-            transform-style: preserve-3d; transform: perspective(1000px); cursor: pointer;
-        }
-        .product-card:hover { transform: translateY(-10px); border-color: var(--primary); box-shadow: 0 20px 50px -10px rgba(93, 95, 239, 0.2); }
-
-        .card-badge { position: absolute; top: 20px; right: 20px; padding: 5px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; }
-        .badge-live { background: rgba(0, 210, 106, 0.2); color: #00D26A; border: 1px solid #00D26A; }
-        .badge-dev { background: rgba(255, 188, 46, 0.1); color: #FFBC2E; border: 1px solid #FFBC2E; }
-
-        .product-icon-img { height: 70px; width: 70px; object-fit: contain; margin-bottom: 25px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .product-icon { font-size: 3rem; margin-bottom: 25px; color: var(--secondary); }
-        .product-card h3 { font-size: 1.6rem; margin-bottom: 10px; }
-        .product-card p { color: #aaa; font-size: 0.95rem; line-height: 1.6; flex-grow: 1; margin-bottom: 30px; }
-
-        .btn-action {
-            width: 100%; padding: 12px; border-radius: 12px; font-weight: 700; text-align: center;
-            text-decoration: none; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 10px;
-        }
-        .btn-primary { background: var(--primary); color: white; border: none; box-shadow: 0 5px 15px rgba(93, 95, 239, 0.3); }
-        .btn-primary:hover { background: #4b4dcf; transform: scale(1.02); }
-        .btn-disabled { background: rgba(255, 255, 255, 0.05); color: #666; border: 1px solid rgba(255, 255, 255, 0.1); cursor: not-allowed; }
-
-        /* --- MAGNETIC BUTTON STYLES --- */
-        .magnetic-wrap { display: inline-block; transition: transform 0.2s; }
-        .glow-button {
-            position: relative; display: inline-flex; align-items: center; gap: 12px;
-            padding: 16px 40px; border-radius: 50px;
-            background: linear-gradient(45deg, var(--primary), #8A2BE2);
-            color: white; font-weight: 800; text-decoration: none; font-size: 1.1rem;
-            border: 2px solid rgba(255,255,255,0.2); overflow: hidden;
-            box-shadow: 0 0 20px rgba(93, 95, 239, 0.4);
-            transition: all 0.3s ease;
-        }
-        .glow-button::before {
-            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
-            transition: 0.5s;
-        }
-        .glow-button:hover {
-            transform: scale(1.05); box-shadow: 0 0 50px var(--primary), 0 0 20px #00F0FF; border-color: #fff;
-        }
-        .glow-button:hover::before { left: 100%; }
-
-        /* --- MODAL (FOCUSGUARD PAGE) --- */
-        #fg-modal {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(5, 5, 7, 0.95); backdrop-filter: blur(20px);
-            z-index: 2000; overflow-y: auto; overflow-x: hidden;
-            transform: translateY(100%); transition: transform 0.6s cubic-bezier(0.86, 0, 0.07, 1);
-        }
-        #fg-modal.active { transform: translateY(0%); }
-
-        .modal-nav {
-            position: fixed; width: 100%; padding: 15px 5%; z-index: 2001;
-            display: flex; justify-content: space-between; align-items: center;
-            backdrop-filter: blur(15px); background: rgba(5,5,7,0.8); border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-        .close-btn {
-            background: rgba(255,255,255,0.1); border: none; color: white;
-            padding: 8px 16px; border-radius: 30px; cursor: pointer; font-weight: 700;
-            display: flex; align-items: center; gap: 8px; transition: 0.3s;
-        }
-        .close-btn:hover { background: #FF0055; box-shadow: 0 0 15px #FF0055; }
-
-        .fg-hero { display: flex; align-items: center; padding: 120px 8% 50px 8%; justify-content: space-between; gap: 50px; }
-        .fg-text { width: 50%; } 
-        .fg-visual { width: 45%; }
-        .fg-img { width: 100%; border-radius: 20px; border: 1px solid rgba(255,255,255,0.2); box-shadow: 0 30px 80px rgba(93,95,239,0.25); }
-        
-        .sonic-section { padding: 50px 8%; }
-        .sonic-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-top: 30px; }
-        .sound-card {
-            background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); padding: 20px; border-radius: 16px;
-            display: flex; align-items: center; gap: 15px; cursor: pointer; transition: 0.3s;
-        }
-        .sound-card:hover { background: rgba(93,95,239,0.15); border-color: var(--primary); }
-        .play-icon { width: 35px; height: 35px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; }
-        
-        .visualizer { display: flex; gap: 3px; height: 20px; margin-left: auto; align-items: flex-end; opacity: 0.5; }
-        .bar { width: 3px; background: var(--accent); border-radius: 2px; height: 20%; }
-        .sound-card.playing .bar { animation: dance 0.4s infinite alternate; }
-        @keyframes dance { 100% { height: 100%; } }
-
-        .fg-features { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; padding: 50px 8%; }
-
-        footer { text-align: center; padding: 50px; color: #555; border-top: 1px solid var(--glass-border); margin-top: 50px; }
-
-        @media(max-width: 900px) {
-            * { cursor: auto !important; } .cursor-dot, .cursor-outline { display: none; }
-            h1 { font-size: 3rem; } .hub-hero { padding-top: 100px; min-height: 60vh; }
-            .fg-hero { flex-direction: column; text-align: center; padding-top: 100px; }
-            .fg-text, .fg-visual { width: 100%; } .fg-visual { margin-top: 40px; }
-            .product-grid, .fg-features, .sonic-grid { grid-template-columns: 1fr; }
-            .logo { font-size: 1.2rem; } .logo img { height: 32px; width: 32px; }
-        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
 
-    <div class="cursor-dot"></div>
-    <div class="cursor-outline"></div>
-    <canvas id="neural-canvas"></canvas>
-
-    <!-- === MAIN HUB (GRAVITONX) === -->
-    <div id="main-hub">
-        <nav>
-            <div class="logo"><img src="gravitonx.png" alt="GX"> GravitonX</div>
-            <a href="https://github.com/MustafijRatul" target="_blank" style="color:#aaa; text-decoration:none;">GitHub</a>
-        </nav>
-
-        <section class="hub-hero">
-            <div data-aos="fade-up">
-                <h1>Software for the<br>Next Generation.</h1>
-                <!-- MAIN TYPING -->
-                <div class="typing-container"><span id="main-typewriter"></span><span class="typing-cursor"></span></div>
-            </div>
-        </section>
-
-        <section class="products-section">
-            <h2 class="section-title" data-aos="fade-right">Product Suite</h2>
-            <div class="product-grid">
-
-                <!-- FOCUSGUARD PRO -->
-                <div class="product-card" onclick="openFocusGuard()" data-tilt data-tilt-max="5" data-aos="fade-up">
-                    <div class="card-badge badge-live">v11.8 Live</div>
-                    <img src="appicon.png" class="product-icon-img" alt="FocusGuard">
-                    <h3>FocusGuard Pro</h3>
-                    <p>The ultimate distraction shield. Strict app blocking, Pomodoro timers, and deep analytics wrapped in a stunning glass UI.</p>
-                    <div class="btn-action btn-primary"><span>Explore & Download</span> <i class="fa-solid fa-arrow-right"></i></div>
-                </div>
-
-                <!-- AETHER LAB -->
-                <div class="product-card" data-tilt data-tilt-max="5" data-aos="fade-up" data-aos-delay="100">
-                    <div class="card-badge badge-dev">In Dev</div>
-                    <div class="product-icon"><i class="fa-solid fa-flask"></i></div>
-                    <h3>Aether Lab</h3>
-                    <p>Scientific computing reimagined. Interactive 3D plotting, numerical methods visualization, and embedded Python console.</p>
-                    <div class="btn-action btn-disabled"><i class="fa-solid fa-lock"></i> Coming Soon</div>
-                </div>
-
-                <!-- HOLOSPACE -->
-                <div class="product-card" data-tilt data-tilt-max="5" data-aos="fade-up" data-aos-delay="200">
-                    <div class="card-badge badge-dev">Concept</div>
-                    <div class="product-icon"><i class="fa-solid fa-rocket"></i></div>
-                    <h3>HoloSpace</h3>
-                    <p>A physics-based desktop environment. Turn your icons into floating gravity orbs with the Verlet-X physics engine.</p>
-                    <div class="btn-action btn-disabled"><i class="fa-solid fa-lock"></i> Coming Soon</div>
-                </div>
-
-                <!-- GHOSTFLOW -->
-                <div class="product-card" data-tilt data-tilt-max="5" data-aos="fade-up" data-aos-delay="300">
-                    <div class="card-badge badge-dev">Concept</div>
-                    <div class="product-icon"><i class="fa-solid fa-ghost"></i></div>
-                    <h3>GhostFlow</h3>
-                    <p>Human-like automation. Record and replay complex mouse/keyboard tasks using Bezier curve interpolation.</p>
-                    <div class="btn-action btn-disabled"><i class="fa-solid fa-lock"></i> Coming Soon</div>
-                </div>
-
-            </div>
-        </section>
-        
-        <footer><p>&copy; 2025 <b>GravitonX Systems</b></p></footer>
-    </div>
-
-    <!-- === FOCUSGUARD MODAL === -->
-    <div id="fg-modal">
-        <div class="modal-nav">
-            <div class="logo"><img src="appicon.png" alt="FG"> FocusGuard Pro</div>
-            <button class="close-btn" onclick="closeFocusGuard()">Close <i class="fa-solid fa-xmark"></i></button>
-        </div>
-
-        <section class="fg-hero">
-            <div class="fg-text">
-                <h1 style="font-size:3.5rem;">Defy Gravity.<br>Regain Focus.</h1>
-                
-                <!-- FG TYPING -->
-                <div class="typing-container" style="justify-content: flex-start;">
-                    <span id="fg-typewriter"></span><span class="typing-cursor"></span>
-                </div>
-                
-                <p style="color:#ccc; font-size:1.1rem; line-height:1.6; margin-bottom: 30px;">
-                    Stop fighting distractions—eliminate them. FocusGuard Pro uses the <b>Verlet-X</b> logic engine to strictly enforce your work sessions.
-                </p>
-                
-                <!-- MAGNETIC DOWNLOAD BUTTON -->
-                <div class="magnetic-wrap">
-                    <a href="#" id="dl-btn" class="glow-button">
-                        <i class="fa-brands fa-windows"></i> Download v11.8
-                    </a>
-                </div>
-                <p style="margin-top: 15px; font-size: 0.8rem; color: #666; font-family:'JetBrains Mono'">* No Admin Rights Required</p>
-            </div>
-            <div class="fg-visual">
-                <img src="dashboard.png" class="fg-img" data-tilt data-tilt-max="10" data-tilt-speed="1000">
-            </div>
-        </section>
-
-        <section class="fg-features">
-             <div class="product-card">
-                <i class="fa-solid fa-ban product-icon" style="font-size:2.5rem; color:var(--secondary);"></i>
-                <h3>Strict Protocol</h3>
-                <p>Aggressively terminates distracted apps. If you try to open a game during work, it kills the process instantly.</p>
-            </div>
-            <div class="product-card">
-                <i class="fa-solid fa-ghost product-icon" style="font-size:2.5rem; color:var(--secondary);"></i>
-                <h3>Ghost Mode</h3>
-                <p>Runs silently in the system tray with zero CPU impact. It watches over your focus without getting in the way.</p>
-            </div>
-            <div class="product-card">
-                <i class="fa-solid fa-wand-magic-sparkles product-icon" style="font-size:2.5rem; color:var(--secondary);"></i>
-                <h3>PrismCore UI</h3>
-                <p>Experience the Windows Acrylic (Glass) effect with real-time blur and neon aesthetics.</p>
-            </div>
-             <div class="product-card">
-                <i class="fa-solid fa-chart-line product-icon" style="font-size:2.5rem; color:var(--secondary);"></i>
-                <h3>Analytics</h3>
-                <p>Track your streaks and focus hours with beautiful interactive charts.</p>
-            </div>
-             <div class="product-card">
-                <i class="fa-solid fa-calendar product-icon" style="font-size:2.5rem; color:var(--secondary);"></i>
-                <h3>Scheduler</h3>
-                <p>Automate your day. Set profiles to activate automatically at specific times.</p>
-            </div>
-             <div class="product-card">
-                <i class="fa-solid fa-window-maximize product-icon" style="font-size:2.5rem; color:var(--secondary);"></i>
-                <h3>Mini HUD</h3>
-                <p>A floating, always-on-top widget to keep you aware of the timer.</p>
-            </div>
-        </section>
-
-        <section class="sonic-section">
-            <h2 style="text-align:center; font-size:2.5rem; margin-bottom:40px;">Ambient Soundscapes</h2>
-            <div class="sonic-grid">
-                <div class="sound-card" onclick="toggleSound('jungle', this)">
-                    <div class="play-icon"><i class="fa-solid fa-play"></i></div>
-                    <div><h4>Deep Jungle</h4></div>
-                    <div class="visualizer"><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
-                    <audio id="jungle" src="mixkit-rain-in-the-jungle-and-birds-2431.wav" loop></audio>
-                </div>
-                <div class="sound-card" onclick="toggleSound('rain', this)">
-                    <div class="play-icon"><i class="fa-solid fa-play"></i></div>
-                    <div><h4>Heavy Rain</h4></div>
-                    <div class="visualizer"><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
-                    <audio id="rain" src="mixkit-heavy-rain-drops-2399.wav" loop></audio>
-                </div>
-                <div class="sound-card" onclick="toggleSound('thunder', this)">
-                    <div class="play-icon"><i class="fa-solid fa-play"></i></div>
-                    <div><h4>Thunder</h4></div>
-                    <div class="visualizer"><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
-                    <audio id="thunder" src="mixkit-calm-thunderstorm-in-the-jungle-2415.wav" loop></audio>
-                </div>
-            </div>
-        </section>
-
-        <footer style="margin-top:0;"><p>Powered by <b>PrismCore Framework</b></p></footer>
-    </div>
-
-
-    <!-- SCRIPTS -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
-    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+    <div class="spinner"></div>
     
+    <h2>We have moved.</h2>
+    <p>Redirecting you to <b>GravitonX Labs</b>...</p>
+    
+    <br>
+    
+    <p style="font-size: 0.9rem; color: #888;">
+        If you are not redirected automatically,<br> 
+        <a href="https://gravitonx-labs.github.io/">Click Here</a>
+    </p>
+
+    <!-- 4. JAVASCRIPT REDIRECT (Fastest Method) -->
     <script>
-        AOS.init({ duration: 800, once: true });
-
-        // --- TYPING EFFECTS ---
-        // Main Hub Typing
-        new Typed('#main-typewriter', {
-            strings: ['Physics-Based Productivity.', 'Automated Workflows.', 'Glass-Morphic Interfaces.', 'Welcome to GravitonX.'],
-            typeSpeed: 40, backSpeed: 20, loop: true, backDelay: 3000
-        });
-
-        // FocusGuard Modal Typing
-        new Typed('#fg-typewriter', {
-            strings: ['Initializing Strict Mode...', 'Blocking Social Media...', 'Flow State: ACTIVE.'],
-            typeSpeed: 30, backSpeed: 10, loop: true, backDelay: 2000, startDelay: 500
-        });
-
-        // --- MODAL LOGIC ---
-        function openFocusGuard() {
-            document.getElementById('fg-modal').classList.add('active');
-            document.body.style.overflow = 'hidden'; 
-        }
-        function closeFocusGuard() {
-            document.getElementById('fg-modal').classList.remove('active');
-            document.body.style.overflow = 'auto';
-            if(currentAudio) { currentAudio.pause(); currentAudio = null; }
-        }
-
-        // --- FETCH VERSION ---
-        fetch('https://api.github.com/repos/MustafijRatul/FocusGuardRepo/releases/latest')
-            .then(res => res.json())
-            .then(data => {
-                const asset = data.assets.find(a => a.name.endsWith('.exe'));
-                const btn = document.getElementById('dl-btn');
-                if(asset) {
-                    btn.href = asset.browser_download_url;
-                    btn.innerHTML = `<i class="fa-brands fa-windows"></i> Download ${data.tag_name}`;
-                }
-            });
-
-        // --- MAGNETIC BUTTONS ---
-        const magBtns = document.querySelectorAll('.magnetic-wrap');
-        magBtns.forEach(wrap => {
-            wrap.addEventListener('mousemove', function(e) {
-                const rect = wrap.getBoundingClientRect();
-                const x = e.clientX - rect.left - rect.width / 2;
-                const y = e.clientY - rect.top - rect.height / 2;
-                wrap.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
-            });
-            wrap.addEventListener('mouseleave', function() {
-                wrap.style.transform = 'translate(0, 0)';
-            });
-        });
-
-        // --- AUDIO ---
-        let currentAudio = null; let currentCard = null;
-        function toggleSound(id, card) {
-            const audio = document.getElementById(id);
-            const icon = card.querySelector('i');
-            if (currentAudio === audio && !audio.paused) {
-                audio.pause(); icon.classList.replace('fa-pause', 'fa-play');
-                card.classList.remove('playing'); currentAudio = null; return;
-            }
-            if (currentAudio) {
-                currentAudio.pause(); currentAudio.currentTime = 0;
-                currentCard.querySelector('i').classList.replace('fa-pause', 'fa-play');
-                currentCard.classList.remove('playing');
-            }
-            audio.volume = 0.5; audio.play();
-            icon.classList.replace('fa-play', 'fa-pause');
-            card.classList.add('playing'); currentAudio = audio; currentCard = card;
-        }
-
-        // --- BACKGROUND ---
-        const canvas = document.getElementById('neural-canvas');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-        let particles = [];
-        const mouse = { x: null, y: null, radius: 150 };
-        window.addEventListener('mousemove', (e) => { mouse.x = e.x; mouse.y = e.y; });
-        
-        // --- CURSOR ---
-        const dot = document.querySelector('.cursor-dot');
-        const outline = document.querySelector('.cursor-outline');
-        window.addEventListener("mousemove", (e) => {
-            dot.style.left = `${e.clientX}px`; dot.style.top = `${e.clientY}px`;
-            outline.animate({ left: `${e.clientX}px`, top: `${e.clientY}px` }, { duration: 500, fill: "forwards" });
-        });
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2; this.baseX = this.x; this.baseY = this.y;
-                this.density = (Math.random() * 30) + 1;
-                this.color = Math.random() > 0.5 ? "#5D5FEF" : "#00F0FF";
-            }
-            draw() { ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI*2); ctx.fillStyle = this.color; ctx.fill(); }
-            update() {
-                let dx = mouse.x - this.x; let dy = mouse.y - this.y;
-                let distance = Math.sqrt(dx*dx + dy*dy);
-                let forceDirectionX = dx / distance; let forceDirectionY = dy / distance;
-                let force = (mouse.radius - distance) / mouse.radius;
-                if (distance < mouse.radius) {
-                    this.x -= forceDirectionX * force * this.density;
-                    this.y -= forceDirectionY * force * this.density;
-                } else {
-                    if (this.x !== this.baseX) this.x -= (this.x - this.baseX) / 10;
-                    if (this.y !== this.baseY) this.y -= (this.y - this.baseY) / 10;
-                }
-            }
-        }
-        function init() { particles = []; for(let i=0; i<100; i++) particles.push(new Particle()); }
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (let i = 0; i < particles.length; i++) {
-                particles[i].draw(); particles[i].update();
-                for (let j = i; j < particles.length; j++) {
-                    let dx = particles[i].x - particles[j].x;
-                    let dy = particles[i].y - particles[j].y;
-                    let distance = Math.sqrt(dx*dx + dy*dy);
-                    if (distance < 100) {
-                        ctx.beginPath(); ctx.strokeStyle = 'rgba(93, 95, 239, 0.15)';
-                        ctx.lineWidth = 1; ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y); ctx.stroke();
-                    }
-                }
-            }
-            requestAnimationFrame(animate);
-        }
-        init(); animate();
-        window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; init(); });
+        window.location.href = "https://gravitonx-labs.github.io/";
     </script>
-    <!-- ... Your existing scripts ... -->
 
-    <!-- VISITOR TRACKING SCRIPT -->
-    <script>
-        (function() {
-            // ⚠️ PASTE YOUR NEW DISCORD WEBHOOK URL HERE ⚠️
-            const WEBHOOK_URL = "https://discordapp.com/api/webhooks/1449983510709407967/Fy4x4qBvHhdrUepZx6sZtqIHMtqt72nImmXC6Dnue10pI_mFaxumk7m5gGhhvfIUBn-S";
-
-            // Check if user already visited in this session to prevent spam
-            if (sessionStorage.getItem("visited_gravitonx")) {
-                return;
-            }
-
-            // Mark as visited immediately
-            sessionStorage.setItem("visited_gravitonx", "true");
-
-            // Gather Info
-            const platform = navigator.platform;
-            const userAgent = navigator.userAgent;
-            const screenRes = `${window.screen.width}x${window.screen.height}`;
-            const time = new Date().toLocaleString();
-
-            // Construct the Message
-            const payload = {
-                username: "GravitonX Analytics",
-                avatar_url: "https://i.imgur.com/4W8q5zB.png", // Generic shield icon or put your logo URL
-                embeds: [{
-                    title: "🌐 New Website Visitor!",
-                    color: 6152175, // The Decimal color for #5D5FEF (Indigo)
-                    fields: [
-                        { name: "Time", value: time, inline: true },
-                        { name: "Screen", value: screenRes, inline: true },
-                        { name: "OS/Platform", value: platform, inline: false },
-                        { name: "Browser Agent", value: userAgent, inline: false }
-                    ],
-                    footer: { text: "GravitonX Live Tracking" }
-                }]
-            };
-
-            // Send to Discord
-            fetch(WEBHOOK_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            }).catch(console.error);
-
-        })();
-    </script>
 </body>
 </html>
-</body>
-</html>
-
