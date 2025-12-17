@@ -1,5 +1,5 @@
 {
-    "version": "11.8",
+    "version": "12.0",
     "url": "https://github.com/MustafijRatul/FocusGuardRepo/releases/download/v11.8/FocusGuard_Pro_Setup_v11.8.exe",
-    "force_update": true
+    "force_update": false
 }
