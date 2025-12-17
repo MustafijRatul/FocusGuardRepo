@@ -1,0 +1,32 @@
+{
+  "meta": {
+    "latest_version": "12.0",
+    "download_url": "https://github.com/MustafijRatul/FocusGuardRepo/releases/latest",
+    "force_update": false
+  },
+  "security": {
+    "banned_uuids": [
+      "example-uuid-to-ban-1",
+      "example-uuid-to-ban-2"
+    ],
+    "ban_message": "Your license has been revoked by GravitonX Labs. Contact support."
+  },
+  "broadcast": {
+    "id": "msg_001",
+    "enabled": true,
+    "title": "Welcome to v12.0",
+    "body": "Welcome to the Command Center update! You are now connected to the GravitonX Cloud.",
+    "type": "info"
+  },
+  "features": {
+    "disable_glass": false,
+    "disable_strict_mode": false
+  },
+  "commands": {
+    "global_blocklist": [],
+    "open_url": {
+      "id": "url_000",
+      "link": ""
+    }
+  }
+}
